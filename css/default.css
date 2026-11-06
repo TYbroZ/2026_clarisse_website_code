@@ -1,5 +1,5 @@
 /* General Blueprint Style */
-@import url(https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700);
+@import url('https://fonts.googleapis.com/css2?family=Questrial&display=swap');
 
 
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
@@ -22,13 +22,13 @@ body, html { font-size: 100%; padding: 0; margin: 0;
 
 
 body {
-    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+    font-family: 'questrial', -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
 	-webkit-font-smoothing: antialiased;
   	font-kerning: normal; /* Forces the browser to use the font's internal kerning data */
   	text-rendering: optimizeLegibility; /* Tells the engine to prioritize geometric and optical precision over rendering speed */
-    
+    font-weight: 300;
 	color:#202020;
-	background: #DAD5CF;
+	background: #efefef;
 }
 
 
@@ -40,7 +40,7 @@ a {
 }
 
 a:hover {
-	color: #FB3637;
+	color: #046307;
 	transition: color 0.3s ease;
 }
 
@@ -54,7 +54,7 @@ a:hover {
 .main {
 	width: 100%;
 	
-	margin: 0 auto;
+	margin: 2em auto;
 }
 
 /* Reset basic spacing */
@@ -64,6 +64,107 @@ a:hover {
   box-sizing: border-box;
 }
 
+
+
+
+/* Container spacing */
+.split-container {
+  max-width:-webkit-fill-available;
+  margin: 0 auto;
+  
+}
+
+/* Base row setup: Text Left, Image Right */
+.split-row {
+  display: flex;
+  align-items: center; /* Vertically centers text next to image */
+  gap: 40px;           /* Adds space between text and image */
+  margin-bottom: 3em; /* Spacing between rows */
+}
+
+/* Force both children to take exactly 50% width minus the gap */
+.split-text{
+	flex: 1;
+} 
+.split-image {
+  flex: 0 0 60%; 
+-webkit-filter: grayscale(1);
+    -webkit-transition: all .8s ease-in-out;
+}
+
+.split-image:hover {
+	filter: none;
+    -webkit-filter: grayscale(0);
+}
+
+/* Responsive Image handling */
+.split-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+      height: 600px;
+    object-fit: cover;
+}
+
+/* 🔄 ALTERNATING MAGIC: Flips every even row horizontally */
+.split-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* 📱 Mobile Responsiveness */
+@media (max-width: 768px) {
+  .split-row,
+  .split-row:nth-child(even) {
+    flex-direction: column; /* Stack vertically on small screens */
+  }
+
+  .split-text, 
+  .split-image {
+    width: 100%; /* Force full width on mobile */
+  }
+}
+
+
+
+/*image caption and arrow*/
+.image-caption {
+  display: inline-flex;
+  align-items: center;
+  letter-spacing: 2px;
+  padding: 1em .5em;      
+  font-size: 1em;
+  color: #202020;         /* Custom link color */
+  text-decoration: none;  /* Removes default underline */
+  font-weight: 500;
+  width: 100%;    
+  justify-content: space-between;
+
+
+  /* Smooth transition for the hover animation */
+  transition: transform 0.25s ease, width 0.25s ease;
+}
+
+
+
+/* Alternating rows logic */
+.split-row:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .split-row, .split-row:nth-child(even) {
+    flex-direction: column;
+  }
+  .split-text, .split-image {
+    width: 100%;
+  }
+}
+
+
+
+
+
 h1 {
 	
 	font-size: 2.4em;
@@ -72,7 +173,7 @@ h1 {
 }
 
 .card h1 {
-	font-family: 'prompt';
+	
 	font-size: 1.6em;
 	font-weight: 900;
 	text-align: left;
@@ -105,7 +206,7 @@ h2 {
 
 
 h3 {
-	font-family: 'prompt';
+	
 	font-weight: 700;
 	font-size: 1em;
 	text-align: left;
@@ -114,7 +215,7 @@ h3 {
 }
 
 h3 p {
-	font-family: 'outfit';
+	
 	font-weight: 500;
 	letter-spacing: 0;
 
@@ -150,7 +251,7 @@ h3 p {
 }
 
 h4 {
-	font-family: 'space mono';
+	
 	font-size: 1.6em;
 	color: #FB3637;
 	text-align: left;
@@ -171,7 +272,7 @@ p {
 /* Flexbox Nav Container */
 .navbar {
   display: flex;                  /* Activates flexbox layout */
-  justify-content: center; /*space-between;  Pushes logo left, links right */
+  justify-content: space-between; /*space-between;  Pushes logo left, links right */
   align-items: center;           /* Centers items vertically */
   padding: 1rem 2rem;
   backdrop-filter: blur(10px);
@@ -180,8 +281,8 @@ p {
   
 -webkit-backdrop-filter
 : blur( 10px );
-  border-radius: 32px;
-  width: 5em;
+  border-radius: 101px;
+  width: -webkit-fill-available;
   position: sticky;               /* Keeps navbar fixed at top on scroll */
   top: 12px;
   left: 12px;
@@ -196,10 +297,7 @@ p {
 
 
 .nav-logo {
-  color: #202020;
-  font-size: .8rem;
-  font-family: Prompt;
-  font-weight: 900;
+  color:#046307;
   letter-spacing:.1em;
   text-decoration: none;
 }
@@ -208,20 +306,27 @@ p {
 .nav-links {
   display: flex;                  /* Lays list items horizontally */
   gap: 1.5rem;                    /* Modern spacing between links */
-  list-style: none;               /* Removes default bullet points */
+  list-style: none; 
+	text-transform: uppercase; 
+}
+
+.nav-links li {
+	padding-bottom: 2px;
 }
 
 /* Link item styling */
 .nav-links a {
   color: #202020;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 14px;
   transition: color 0.3s ease;
+  letter-spacing: 1px;
 }
 
 /* Hover state */
 .nav-links a:hover {
-  color: #FB3637;
+    color: #046307;
+    transition: color 0.3s ease;
 }
 
 
@@ -422,12 +527,94 @@ p {
     align-items: flex-start;
 }
 
-.footer {
+
+
+
+
+
+/* Base footer background and padding */
+.site-footer {
+  color: #202020;
+  padding: 60px 20px;
+}
+
+/* 🧱 The Flex Container */
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;       /* Allows columns to break to a new line */
+               /* Spacing between columns */
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 🖥️ Desktop: 4 Columns calculation
+   Takes 25% of width minus the gaps to sit perfectly in a row */
+.footer-column {
+  flex: 1 1 calc(25% - 40px); 
+  min-width: 200px;      /* Prevents columns from becoming illegibly narrow */
+}
+
+/* Header Text Styling */
+.footer-title {
+  padding:0;
+  margin: 0 0 .5em 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+  color: #046307;
+  font-weight: 100;
+}
+
+/* List Formatting resetting */
+.footer-links {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+  font-size: 14px;
+}
+
+.footer-links li {
+  margin-bottom: 22px;
+}
+
+.footer-links a {
+  
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #046307;
+}
+
+/* 📱 Mobile: 2 Columns Layout Override */
+@media (max-width: 768px) {
+  .footer-column {
+    /* Changes width basis to roughly 50% so they split side-by-side */
+    flex: 1 1 calc(50% - 40px); 
+  }
+}
+
+/* 📱 Extra Small Mobile: 1 Column Layout Override */
+@media (max-width: 480px) {
+  .footer-column {
+    /* Stacks completely flat on ultra-small screens */
+    flex: 1 1 100%; 
+  }
+}
+
+
+
+
+
+
+
+.footer-copyright {
 	font-size: .7em;
     font-family: 'space mono';
     color: #202020;
     text-align: left;
-    margin: 2em 0 0 2.5em;
+    margin: 2em 0 0 2em;
 }
 
 .footer p {
@@ -436,59 +623,6 @@ p {
 
 
 
-.mega-footer {
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 0 2em;
-}
-
-.footer-columns {
-  display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap; /* Wraps columns to rows on smaller screens */
- 
- 
-}
-
-.footer-col {
-  flex: 1; /* Makes all columns share equal width */
-  min-width: 200px; /* Prevents columns from getting too squished */
-}
-
-.footer-col ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-col a {
-  color: #202020;
-  text-decoration: none;
-}
-
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.footer-cool {
-	letter-spacing: -.05em;
-    container-type: inline-size;
-    font-size: 41cqw;
-    text-align: justify;
-}
-
-.footer-cool h1 {
-	    font-size: 100%;
-    font-family: 'space mono';
-    font-weight: 100;
-    padding: 0;
-    line-height: .6;
-	color:#fb3637;
-	cursor: default;
-}
 
 
 
@@ -496,7 +630,7 @@ p {
 @media screen and (max-width: 55em) {
 
 	.main {
-		padding: 0 2em;
+		
 	}
 	.container > header h1,
 	.container > header nav {
